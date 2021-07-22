@@ -4,6 +4,10 @@
 
 using namespace std;
 
+/**
+ * Using Manacher's algorithm
+ * https://e-maxx.ru/algo/palindromes_count
+ */
 class Solution {
 public:
     int findMaxOddPalindrome(string s, int center, int i) {
