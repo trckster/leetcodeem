@@ -41,6 +41,5 @@ func maxProfit(prices []int) int {
 
 func main() {
 	prices := []int{3, 3, 5, 0, 0, 3, 1, 4}
-	println(maxProfit2(prices))
-
+	println(maxProfit(prices))
 }
