@@ -25,6 +25,8 @@ def find_max_subarray(arr):
 
 def scan(arr, number, numbers_available):
     best_sum = initial_sum = sum(arr[0:numbers_available])
+    start = 0
+    end = numbers_available - 1
 
     i = 0
     while numbers_available + i < len(arr):
@@ -33,10 +35,26 @@ def scan(arr, number, numbers_available):
 
         if best_sum < initial_sum:
             best_sum = initial_sum
+            start = i + 1
+            end = i + numbers_available
 
         i += 1
 
-    return best_sum + number * numbers_available
+    left_best_sum = left_sum = 0
+    start -= 1
+    while start >= 0:
+        left_sum += arr[start]
+        left_best_sum = max(left_sum, left_best_sum)
+        start -= 1
+
+    right_best_sum = right_sum = 0
+    end += 1
+    while end < len(arr):
+        right_sum += arr[end]
+        right_best_sum = max(right_sum, right_best_sum)
+        end += 1
+
+    return left_best_sum + right_best_sum + best_sum + number * numbers_available
 
 
 def print_array(arr):
@@ -98,8 +116,5 @@ for task in range(t):
         answer.append(max(best_local_result, answer[k - 1]))
 
         k += 1
-
-    if t == 1:
-        print(answer[508], answer[509], answer[510], answer[511])
 
     print_array(answer)
